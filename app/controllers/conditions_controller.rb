@@ -1,6 +1,6 @@
 class ConditionsController < ApplicationController
   before_action :set_condition, only: [:show, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /conditions
   def index
     @conditions = Condition.all
