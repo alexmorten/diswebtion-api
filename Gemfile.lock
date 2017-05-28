@@ -54,7 +54,7 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
-    devise_token_auth (0.1.37)
+    devise_token_auth (0.1.38)
       devise (> 3.5.2, < 4.1)
       rails (< 6)
     erubis (2.7.0)
@@ -145,7 +145,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers (~> 0.10.0.rc2)
   byebug
-  devise_token_auth
+  devise_token_auth (~> 0.1.38)
   listen (~> 3.0.5)
   pg
   puma (~> 3.0)
