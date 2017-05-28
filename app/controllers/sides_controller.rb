@@ -1,6 +1,6 @@
 class SidesController < ApplicationController
   before_action :set_side, only: [:show, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /sides
   def index
     @sides = Side.all
