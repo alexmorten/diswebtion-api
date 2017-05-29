@@ -16,7 +16,7 @@ class SidesController < ApplicationController
   # POST /sides
   def create
     @side = Side.new(side_params)
-
+    @side.user=@current_user
     if @side.save
       render json: @side, status: :created, location: @side
     else

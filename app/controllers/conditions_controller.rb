@@ -16,7 +16,7 @@ class ConditionsController < ApplicationController
   # POST /conditions
   def create
     @condition = Condition.new(condition_params)
-
+    @condition.user=@current_user
     if @condition.save
       render json: @condition, status: :created, location: @condition
     else

@@ -16,7 +16,7 @@ class ArgumentsController < ApplicationController
   # POST /arguments
   def create
     @argument = Argument.new(argument_params)
-
+    @argument.user=@current_user
     if @argument.save
       render json: @argument, status: :created, location: @argument
     else
