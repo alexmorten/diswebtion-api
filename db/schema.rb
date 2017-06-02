@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170526131216) do
+ActiveRecord::Schema.define(version: 20170602114035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,21 @@ ActiveRecord::Schema.define(version: 20170526131216) do
     t.datetime "updated_at",                               null: false
   end
 
+  create_table "votes", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "argument_id"
+    t.integer  "condition_id"
+    t.integer  "user_id"
+    t.integer  "value"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["argument_id", "condition_id", "user_id"], name: "index_votes_on_argument_id_and_condition_id_and_user_id", unique: true, using: :btree
+    t.index ["argument_id"], name: "index_votes_on_argument_id", using: :btree
+    t.index ["condition_id"], name: "index_votes_on_condition_id", using: :btree
+    t.index ["user_id"], name: "index_votes_on_user_id", using: :btree
+  end
+
   add_foreign_key "arguments", "sides"
   add_foreign_key "arguments", "users"
   add_foreign_key "conditions", "topics"
@@ -91,4 +106,7 @@ ActiveRecord::Schema.define(version: 20170526131216) do
   add_foreign_key "sides", "topics"
   add_foreign_key "sides", "users"
   add_foreign_key "topics", "users"
+  add_foreign_key "votes", "arguments"
+  add_foreign_key "votes", "conditions"
+  add_foreign_key "votes", "users"
 end
