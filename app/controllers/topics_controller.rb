@@ -17,7 +17,9 @@ class TopicsController < ApplicationController
   def create
     @topic = Topic.new(topic_params)
     @topic.user=@current_user
+
     if @topic.save
+      Condition.create(title:"default",topic:@topic)
       render json: @topic, status: :created, location: @topic
     else
       render json: @topic.errors, status: :unprocessable_entity
