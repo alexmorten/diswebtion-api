@@ -3,9 +3,14 @@ class VotesController < ApplicationController
   before_action :authenticate_user!
   # GET /votes
   def index
-    @votes = Vote.all
+    if params[:argument_id]
+      @votes = Argument.find(params[:argument_id]).votes
+    else
+      @votes = Vote.all
+    end
+      render json: @votes
 
-    render json: @votes
+
   end
 
   # GET /votes/1
